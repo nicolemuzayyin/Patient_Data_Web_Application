@@ -9,4 +9,10 @@
     MoonShot on the Web
   </description>
 
+  <!-- set home.jsp as the default home page -->
+  <welcome-file-list>
+    <!-- when visiting the root URL (https://localhost:8080), home.jsp will be shown -->
+    <welcome-file>home.jsp</welcome-file>
+  </welcome-file-list>
+
 </web-app>

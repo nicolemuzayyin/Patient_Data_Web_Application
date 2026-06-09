@@ -1,3 +1,244 @@
-.clearBoth {
-  clear: both;
+/* main color variables */
+:root {
+--primary:      #1976d2;
+--primary-dark: #1565c0;
+}
+
+.title {
+font-size: 1.5em;
+font-weight: 600;
+margin-bottom: 18px;
+color: var(--primary);
+}
+
+/* pie chart styling */
+.pie-chart-wrapper {
+width: 100%;
+max-width: 300px;
+height: 300px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.pie-chart {
+width: 200px;
+height: 200px;
+border-radius: 50%;
+position: relative;
+}
+
+/* bar chart styling */
+.bar-chart-wrapper {
+width: 100%;
+max-width: 800px;
+height: 450px;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.bar-chart {
+display: flex;
+align-items: flex-end;
+justify-content: space-around;
+width: 100%;
+height: 350px;
+padding: 20px 10px 60px 10px;
+position: relative;
+}
+
+.bar-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 60px;
+position: relative;
+}
+
+.bar {
+width: 45px;
+background: linear-gradient(to top, #4caf50, #66bb6a);
+border-radius: 4px 4px 0 0;
+min-height: 8px;
+margin-bottom: 10px;
+}
+
+.bar-value {
+font-size: 14px;
+font-weight: bold;
+color: #222;
+margin-bottom: 8px;
+text-align: center;
+}
+
+.bar-label {
+font-size: 11px;
+color: #555;
+text-align: center;
+position: absolute;
+bottom: -50px;
+left: 50%;
+transform: translateX(-50%) rotate(-30deg);
+transform-origin: center;
+white-space: nowrap;
+width: 80px;
+}
+
+.main {
+max-width: 900px;
+margin: 0 auto;
+padding: 24px;
+}
+
+/* base/body fonts */
+body {
+font-family: Arial, sans-serif;
+background: #fafafa;
+color: #222;
+margin: 24px;
+}
+
+/* navigation links */
+.header nav a,
+nav a {
+font-weight: 500;
+padding: 4px 10px;
+border-radius: 4px;
+}
+.header nav a { color: #fff; margin-right: 18px; }
+nav a         { color: var(--primary); margin-right: 12px; padding: 4px 8px; }
+
+/* header style */
+.header {
+background: var(--primary);
+color: #fff;
+padding: 24px 32px 18px 32px;
+border-radius: 0 0 8px 8px;
+margin-bottom: 24px;
+}
+.header h1 {
+margin: 0 0 12px 0;
+font-size: 2.2em;
+font-weight: 700;
+}
+
+/* button style */
+button,
+input[type="submit"],
+.button-link {
+background: var(--primary);
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 8px 16px;
+font-size: 15px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+margin-top: 8px;
+margin-bottom: 8px;
+}
+
+/* chart card style for stats */
+.chart-card {
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 24px 28px;
+margin-bottom: 24px;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+display: flex;
+flex-direction: column;
+align-items: center;
+min-height: 420px;
+}
+
+/* chart card styling */
+.chart-card:has(.bar-chart-wrapper) {
+min-width: 800px;
+}
+
+.chart-card:has(.pie-chart-wrapper) {
+min-width: 340px;
+}
+
+.chart-card h3 {
+margin: 0 0 8px 0;
+font-size: 1em;
+color: #444;
+}
+
+/* success and error message styling  */
+.success,
+.error {
+border-radius: 4px;
+padding: 8px 12px;
+margin-bottom: 12px;
+}
+.success { color: #388e3c; background: #e8f5e9; }
+.error   { color: #d32f2f; background: #ffebee; }
+
+/* table styling */
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 16px 0;
+background: #fff;
+border-radius: 8px;
+box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+th, td {
+border: 1px solid #ccc;
+padding: 10px;
+text-align: left;
+}
+th { background: #f0f0f0; }
+
+/* input field styling */
+input[type="text"], select, textarea {
+border: 1px solid #ccc;
+padding: 8px;
+font-size: 15px;
+border-radius: 4px;
+margin-bottom: 8px;
+}
+
+/* chart grid styling*/
+.chart-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 32px;
+justify-content: center;
+align-items: flex-start;
+margin: 32px auto 40px auto;
+}
+
+/* chart legend styling */
+.chart-legend {
+display: flex;
+gap: 16px;
+margin-top: 12px;
+font-size: 13px;
+color: #555;
+}
+.chart-legend span {
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.legend-color {
+width: 12px;
+height: 12px;
+border-radius: 2px;
+}
+
+.male-color {
+background: #1976d2;
+}
+
+.female-color {
+background: #e91e8c;
 }

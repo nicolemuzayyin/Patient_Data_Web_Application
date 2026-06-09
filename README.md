@@ -1,58 +1,40 @@
-# WebAppExample
+# COMP0004 Coursework - Patient Data Web Application
 
-A minimal Java web application intended for junior developers learning the basics of Java web apps, servlets, and JSPs. The app runs an embedded Tomcat server and serves static resources from `src/main/webapp`.
+## Overview
 
-## Prerequisites
+This Java web application manages patient records loaded from CSV files using servlets, JSPs, and the MVC pattern. Built with Apache Tomcat, it features a custom DataFrame structure for data storage, comprehensive search functionality, statistical analysis with CSS-based charts, and full CRUD operations with data persistence.
 
-- Java 25 (as configured in `pom.xml`)
-- Maven 3.9+
+## Data Structure and Loading
 
-## Project Structure
+Patient data is loaded from CSV files (patients100.csv to patients100000.csv) into a custom DataFrame composed of Column objects. The DataLoader class handles CSV parsing with robust error handling for missing files or malformed data. All data is stored as strings with the DataFrame providing efficient row and column access methods. The Model class manages the DataFrame through a singleton pattern, ensuring consistent data access across all servlets.
 
-- `src/main/java` — Java source code (including the embedded Tomcat bootstrap in `uk.ac.ucl.main.Main`)
-- `src/main/webapp` — Static web resources and JSPs
-- `target` — Build output (created by Maven)
-- `war-file` — Packaged WAR output (created by Maven)
+## Web Interface
 
-## Compile
+The application provides five main pages: a home page, a patient list with ability to add a new patient, a search page, a patient page for individual patient details + editing/deleting their data, and a statistics dashboard. Navigation is handled through a header on all pages. Servlets process all HTTP requests and pass data to JSPs as attributes. JSPs contain only presentation logic with no direct data manipulation, maintaining clean MVC separation.
 
-Build the project and produce a WAR file:
+## Search and Filtering
+
+Multi-field search allows keyword matching across all patient attributes where results can be filtered by gender (Male/Female) and vital status (Living/Deceased) and sorted by name or birth date. Search results display patient names as clickable links leading to detailed patient pages for editing or deletion.
+
+## Statistics and Visualization
+
+The statistics page displays the gender distribution, age distribution of living patients, and geographic distribution of patients by city. Visual charts are implemented using CSS techniques: a conic-gradient pie chart for gender distribution and a bar chart for age group distributions. All statistics update as patient data changes (altered patient data, deleted patients, added patients).
+
+## Data Management
+
+CRUD operations are implemented: add new patients through web forms, edit existing records, and delete patients with confirmation. All changes immediately update the DataFrame and trigger CSV file rewriting to maintain data persistence. JSON export functionality saves the complete dataset using a custom JSONWriter class.
+
+## How to Run
+
+Note: To run, Java and Maven are required
+1. Place CSV files in the data/ folder
+2. Run the following commands:
 
 ```bash
-mvn clean package
-```
-
-This writes the WAR to `war-file/`.
-
-## Run (Embedded Tomcat)
-
-First compile the project, then run the main class via Maven:
-
-```bash
+mvn clean
 mvn clean compile exec:exec
 ```
 
-By default the server starts on port `8080`. Open:
+3. Open http://localhost:8080 in your browser
 
-```
-http://localhost:8080
-```
-
-## Configuration
-
-You can configure the server using system properties or environment variables:
-
-- `SERVER_PORT` — Port to bind (default: `8080`)
-- `WEBAPP_DIR` — Web resources directory (default: `src/main/webapp/`)
-- `CLASSES_DIR` — Compiled classes directory (default: `target/classes`)
-
-Example (using environment variables):
-
-```bash
-SERVER_PORT=9090 mvn clean compile exec:exec
-```
-
-## Notes for Learners
-
-- The entry point is `uk.ac.ucl.main.Main` in `src/main/java/uk/ac/ucl/main/Main.java`.
-- Packaging as a WAR is useful if you want to deploy to an external Tomcat later.
+The application automatically loads patients1000.csv on startup. For larger datasets, update the filename reference in the ModelFactory class and ensure the CSV file is read properly.
