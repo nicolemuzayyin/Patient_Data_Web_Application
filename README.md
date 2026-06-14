@@ -1,4 +1,4 @@
-# COMP0004 Coursework - Patient Data Web Application
+Patient Data Web Application
 
 ## Overview
 
